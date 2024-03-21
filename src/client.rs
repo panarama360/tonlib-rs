@@ -48,7 +48,7 @@ pub struct TonClient {
 
 struct Inner {
     retry_strategy: RetryStrategy,
-    connections: Vec<PoolConnection>,
+    pub connections: Vec<PoolConnection>,
 }
 
 impl TonClient {
@@ -180,7 +180,7 @@ fn retry_condition(error: &TonClientError) -> bool {
     }
 }
 
-struct PoolConnection {
+pub struct PoolConnection {
     params: TonConnectionParams,
     callback: Arc<dyn TonConnectionCallback>,
     conn: Mutex<Option<TonConnection>>,
@@ -188,7 +188,7 @@ struct PoolConnection {
 }
 
 impl PoolConnection {
-    async fn get_connection(&self) -> Result<TonConnection, TonClientError> {
+    pub async fn get_connection(&self) -> Result<TonConnection, TonClientError> {
         let mut guard = self.conn.lock().await;
         match guard.deref() {
             Some(conn) => Ok(conn.clone()),

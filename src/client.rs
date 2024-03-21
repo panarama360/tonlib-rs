@@ -134,6 +134,10 @@ impl TonClient {
     pub fn set_log_verbosity_level(verbosity_level: u32) {
         TlTonClient::set_log_verbosity_level(verbosity_level)
     }
+
+    pub fn get_inner(&self) -> &Arc<Inner> {
+        &self.inner
+    }
 }
 
 #[async_trait]

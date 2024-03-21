@@ -43,7 +43,7 @@ pub enum ConnectionCheck {
 }
 
 pub struct TonClient {
-    inner: Arc<Inner>,
+    pub inner: Arc<Inner>,
 }
 
 struct Inner {

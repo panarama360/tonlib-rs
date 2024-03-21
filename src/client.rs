@@ -43,10 +43,10 @@ pub enum ConnectionCheck {
 }
 
 pub struct TonClient {
-    pub inner: Arc<Inner>,
+    inner: Arc<Inner>,
 }
 
-struct Inner {
+pub struct Inner {
     retry_strategy: RetryStrategy,
     pub connections: Vec<PoolConnection>,
 }
